@@ -95,9 +95,9 @@ def mapReads(hpvBams, defaultHpvRef=True, hpvRefPath='', annot='', filterLowComp
                 else:
                     hpvRefIdGeneDict[line[0]] = [line[1:]]
 
-    annotColorDict = {'E1':'g','E2':'gray','E3':'y','E4':'r','E5':'orange',
-                      'E6':'b','E7':'m','E8':'c','L1':'indigo','L2':'brown'}
-    annotColors=['maroon','navy','pink','g','gray','k','y','r','orange','b','m','c','indigo']
+    #annotColorDict = {'E1':'g','E2':'gray','E3':'y','E4':'r','E5':'orange',
+    #                  'E6':'b','E7':'m','E8':'c','L1':'indigo','L2':'brown'}
+    #annotColors=['maroon','navy','pink','g','gray','k','y','r','orange','b','m','c','indigo']
 
     # Read in HPV reference file
     with open(hpvRefPath,'r') as fHpvRef:
@@ -348,18 +348,18 @@ def mapReads(hpvBams, defaultHpvRef=True, hpvRefPath='', annot='', filterLowComp
                 
                 tname1 = gName[:2].upper()
                 tname2 = gName[-2:].upper()
-                if (tname1 in annotColorDict and
-                    (len(gName)<3 or gName[2] not in '^*')):
-                    gc = annotColorDict[tname1]
-                elif (tname2 in annotColorDict and
-                      (len(gName)<3 or gName[-3] not in '^*')):
-                    gc = annotColorDict[tname2]
-                else:
-                    if gName != gNameLast:
-                        ic += 1
-                    gc = annotColors[ic]
-                    if ic>13:
-                        ic = 0
+                #if (tname1 in annotColorDict and
+                #    (len(gName)<3 or gName[2] not in '^*')):
+                #    gc = annotColorDict[tname1]
+                #elif (tname2 in annotColorDict and
+                #      (len(gName)<3 or gName[-3] not in '^*')):
+                #    gc = annotColorDict[tname2]
+                #else:
+                #    if gName != gNameLast:
+                #        ic += 1
+                #    gc = annotColors[ic]
+                #    if ic>13:
+                #        ic = 0
                 if gStart >= y1end:
                     ypos = ypos1
                     yposlab = yposlab1
@@ -369,7 +369,7 @@ def mapReads(hpvBams, defaultHpvRef=True, hpvRefPath='', annot='', filterLowComp
                 else:
                     ypos = ypos3
                     yposlab = yposlab3
-                gline = cov.add_line(lines.Line2D([gStart,gEnd],[ypos,ypos],color=gc,clip_on=False, linewidth=2))
+                gline = cov.add_line(lines.Line2D([gStart,gEnd],[ypos,ypos],clip_on=False, linewidth=2))
                 glines.append(gline)
                 glabel = cov.text(gStart, yposlab, gName)
                 glabels.append(glabel)
